@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Seamus Taylor - AI engineering and applied machine learning. Team Lead, Monash AIM 2027. Computer vision lead on NeuroGrip, an autonomously controlled prosthetic arm.">
+<meta name="author" content="Seamus Taylor">
+<meta property="og:title" content="Seamus Taylor">
+<meta property="og:description" content="AI engineering and applied machine learning - Monash University.">
+<meta property="og:type" content="website">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#fafaf9}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Seamus Taylor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: single measured column, left-aligned; a slim sticky rule for orientation;
+   work entries as flat rows separated by hairlines rather than floating cards. */
+:root{
+  --bg:#F1F5F6;
+  --surface:#FFFFFF;
+  --fg:#101A1E;
+  --muted:#596E76;
+  --faint:#8AA0A7;
+  --line:#D5E0E3;
+  --accent:#0A6A6A;
+  --accent-soft:#DDEDEC;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1316;
+    --surface:#121C20;
+    --fg:#E7EEF0;
+    --muted:#9BAEB5;
+    --faint:#6B828A;
+    --line:#223037;
+    --accent:#4FCFC2;
+    --accent-soft:#16302F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1316;
+  --surface:#121C20;
+  --fg:#E7EEF0;
+  --muted:#9BAEB5;
+  --faint:#6B828A;
+  --line:#223037;
+  --accent:#4FCFC2;
+  --accent-soft:#16302F;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.6;
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding-inline:24px;
+  padding-block:0 72px;
+}
+
+/* ---- masthead ---- */
+.masthead{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:10;
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.masthead .wrap{
+  padding-block:12px;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.mast-name{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:-0.01em;
+}
+.mast-nav{
+  display:flex;
+  gap:18px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.04em;
+}
+.mast-nav a{color:var(--muted);text-decoration:none}
+.mast-nav a:hover{color:var(--accent)}
+
+/* ---- hero ---- */
+.hero{padding-block:56px 40px}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 18px;
+}
+h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(40px,8vw,62px);
+  line-height:1.02;
+  letter-spacing:-0.035em;
+  margin:0 0 20px;
+  text-wrap:balance;
+}
+.lede{
+  font-size:19px;
+  line-height:1.55;
+  color:var(--fg);
+  margin:0 0 10px;
+  max-width:60ch;
+}
+.sub{
+  color:var(--muted);
+  margin:0;
+  max-width:60ch;
+}
+
+.interests{
+  margin:16px 0 0;
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.03em;
+  color:var(--muted);
+}
+.interests span{
+  color:var(--accent);
+  text-transform:uppercase;
+  font-size:10.5px;
+  letter-spacing:0.12em;
+  margin-right:10px;
+}
+.cv-link{
+  display:inline-block;
+  margin-top:18px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--accent);
+  text-decoration:none;
+  border:1px solid var(--accent);
+  border-radius:3px;
+  padding:9px 15px;
+}
+.cv-link:hover{background:var(--accent-soft)}
+
+/* signal canvas */
+.signal{
+  margin:34px 0 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding-block:6px;
+}
+.signal canvas{display:block;width:100%;height:92px;max-width:100%}
+.signal-cap{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:0.08em;
+  color:var(--faint);
+  padding-top:6px;
+  text-transform:uppercase;
+}
+
+/* ---- sections ---- */
+section{padding-block:40px 0}
+h2{
+  font-family:var(--mono);
+  font-weight:500;
+  font-size:11.5px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--faint);
+  margin:0 0 22px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+}
+
+/* ---- now list ---- */
+.now{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.now li{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:6px 16px;
+  align-items:baseline;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.now li:last-child{border-bottom:0}
+.now .role{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:17px;
+  letter-spacing:-0.012em;
+  min-width:0;
+}
+.now .org{display:block;color:var(--muted);font-size:15.5px;font-weight:400;font-family:var(--body)}
+.now .when{
+  font-family:var(--mono);
+  font-size:11.5px;
+  color:var(--faint);
+  letter-spacing:0.05em;
+  white-space:nowrap;
+}
+
+/* ---- work ---- */
+.section-note{
+  color:var(--muted);
+  font-size:15.5px;
+  margin:0 0 22px;
+  max-width:62ch;
+}
+.work{display:grid;gap:0}
+.entry{
+  padding-block:26px;
+  border-bottom:1px solid var(--line);
+}
+.entry:first-child{padding-top:4px}
+.entry-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:4px;
+}
+.entry h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:21px;
+  letter-spacing:-0.02em;
+  margin:0;
+}
+.chip{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:3px;
+  white-space:nowrap;
+}
+.chip-live{background:var(--accent-soft);color:var(--accent)}
+.chip-done{background:transparent;color:var(--faint);border:1px solid var(--line)}
+.entry .meta{
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:0.05em;
+  color:var(--faint);
+  margin:0 0 12px;
+}
+.entry p{margin:0 0 12px;color:var(--fg)}
+.entry p:last-of-type{margin-bottom:14px}
+.entry ul{margin:0 0 14px;padding-left:20px;color:var(--fg)}
+.entry li{margin-bottom:6px}
+.entry li::marker{color:var(--accent)}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.03em;
+}
+.tags span{
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:3px;
+  padding:3px 7px;
+  background:var(--surface);
+}
+
+/* ---- approach ---- */
+.approach{display:grid;gap:20px}
+.approach div{min-width:0}
+.approach h4{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:-0.01em;
+  margin:0 0 5px;
+}
+.approach p{margin:0;color:var(--muted);font-size:16px}
+
+/* ---- stack ---- */
+.stack{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.stack li{
+  display:grid;
+  grid-template-columns:118px 1fr;
+  gap:16px;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  align-items:baseline;
+}
+.stack li:last-child{border-bottom:0}
+.stack dt,.stack .k{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--faint);
+}
+.stack .v{font-size:16px;min-width:0}
+
+/* ---- links ---- */
+.mast-nav a.gh{
+  color:var(--accent);
+  font-weight:500;
+}
+.links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.04em;
+}
+.links a{color:var(--accent);text-decoration:none}
+.links a:hover{text-decoration:underline}
+.repo{
+  display:inline-block;
+  margin-top:10px;
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:0.04em;
+  color:var(--accent);
+  text-decoration:none;
+}
+.repo:hover{text-decoration:underline}
+
+/* ---- contact ---- */
+.contact{
+  margin-top:40px;
+  padding:24px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:4px;
+}
+.contact p{margin:0 0 14px;color:var(--muted)}
+.mailrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mail{
+  font-family:var(--mono);
+  font-size:15px;
+  color:var(--fg);
+  user-select:all;
+  word-break:break-all;
+  min-width:0;
+}
+button.copy{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:7px 12px;
+  border:1px solid var(--accent);
+  background:transparent;
+  color:var(--accent);
+  border-radius:3px;
+  cursor:pointer;
+}
+button.copy:hover{background:var(--accent-soft)}
+button.copy:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+footer{
+  margin-top:48px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.06em;
+  color:var(--faint);
+}
+
+@media (max-width:520px){
+  .now li{grid-template-columns:1fr}
+  .stack li{grid-template-columns:1fr;gap:3px}
+  .entry h3{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <span class="mast-name">Seamus Taylor</span>
+    <nav class="mast-nav">
+      <a href="#now">Now</a>
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+      <a class="gh" href="https://github.com/seamus-programming-stuff" target="_blank" rel="noopener">GitHub</a>
+      <a class="gh" href="https://www.linkedin.com/in/seamus-taylor-493046247/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Monash University · Melbourne</p>
+    <h1>Seamus Taylor</h1>
+    <p class="lede">I build and lead applied AI systems that have to produce a real result on a real deadline — LLM pipelines with their own evaluation harnesses, a clinical decision agent built to stay auditable, and vision running at the edge on a prosthetic hand.</p>
+    <p class="sub">Third year, Bachelor of Advanced Computer Science (Honours), specialising in Data Science. Team Lead of Monash AIM for 2027, after a year as Operations Lead.</p>
+    <p class="interests"><span>Research interests</span> EEG and neural signal AI · medical AI</p>
+
+    <div class="signal">
+      <canvas id="trace" aria-hidden="true"></canvas>
+      <div class="signal-cap">EEG → BOLD · the cross-modal problem behind my current research work</div>
+    </div>
+    <a class="cv-link" href="seamus-taylor-cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
+  </div>
+
+  <section id="now">
+    <h2>Now</h2>
+    <ul class="now">
+      <li>
+        <span class="role">Team Lead<span class="org">Monash AIM — Analysis of Images in Medicine</span></span>
+        <span class="when">2027 · Ops Lead 2026</span>
+      </li>
+      <li>
+        <span class="role">AI Lead, Computer Vision<span class="org">NeuroGrip — Monash DeepNeuron</span></span>
+        <span class="when">Current</span>
+      </li>
+      <li>
+        <span class="role">Research Collaborator<span class="org">NeuroBOLT reimplementation, with a researcher</span></span>
+        <span class="when">Current</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="work">
+    <h2>Selected work</h2>
+    <p class="section-note">Most of this is done inside Monash AIM, the university’s medical AI research group, which enters the MICCAI challenges — international benchmarks judged on held-out test sets against research labs worldwide.</p>
+    <div class="work">
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3>CHIMERA-Agent</h3>
+          <span class="chip chip-live">In progress</span>
+        </div>
+        <p class="meta">Monash AIM · Architecture and build</p>
+        <p>A risk-stratification agent over MRI and biopsy data. The architecture is deliberately hybrid: a deterministic guideline core carries the clinical logic, and a grounded LLM is constrained to what it can actually support from the patient record.</p>
+        <p>The design decision I care most about is that NCCN risk-group derivation returns candidate categories <em>with traces</em> rather than hard labels. Every output can be walked back to the evidence that produced it. In a clinical setting that is the difference between something deployable and something you can only demo.</p>
+        <div class="tags"><span>Agent architecture</span><span>Grounded LLM</span><span>Guardrails</span><span>Traceable output</span><span>Python</span><span>ReportLab</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3>CohortX</h3>
+          <span class="chip chip-done">Delivered</span>
+        </div>
+        <p class="meta">Monash AIM · Team Lead, four people, three tasks</p>
+        <p>An LLM pipeline that reads biomedical literature and pulls out the cohort selection criteria a trial actually used — free text in, structured eligibility criteria out. I led the team and personally delivered two of the three tasks end to end: parsing, prompting, eligibility prediction, evaluation and the submission pipeline.</p>
+        <p>Most of the engineering was not the model. It was deciding which model was worth the compute we had, and building something that could tell us whether a change had helped.</p>
+        <ul>
+          <li>Evaluated open-weight models for the extraction task — LLaMA 3.1 8B as the primary, with Mistral Nemo and BioBERT as fallbacks — against cost and the compute we could actually get.</li>
+          <li>Built a local evaluation harness implementing the challenge's FM3S metric: BioBERT cosine similarity, number similarity and a polarity consistency coefficient.</li>
+          <li>Caught two faults that were failing silently: a mismatch between parsed and expected file counts, and a scorer whose composite weights I couldn't verify — which meant leaderboard feedback was the only signal worth trusting.</li>
+          <li>Restructured ownership and handover mid-project so the team kept delivering to deadline through a period I was away.</li>
+        </ul>
+        <p>The team's third-task result earned a contribution to a MICCAI paper and presentation, currently in preparation.</p>
+        <div class="tags"><span>LLaMA 3.1</span><span>BioBERT</span><span>SetFit</span><span>Python</span><span>Eval harness</span><span>HPC</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3>NeuroGrip</h3>
+          <span class="chip chip-live">In progress</span>
+        </div>
+        <p class="meta">Monash DeepNeuron · AI Lead on a three-person build</p>
+        <p>The project goal is a prosthetic arm controlled autonomously by AI. I own the computer vision pipeline: detecting the target object and driving finger movement from what the camera sees, alongside a mechanical lead and an electrical lead. It runs on the device — monocular depth from Depth Anything with an optional stereo path, deployed to an NVIDIA Jetson NEON smart camera.</p>
+        <p>What it does in practice: track a taught fingertip and the target object, estimate the gap between them in millimetres once calibrated, and hand the electrical controller a movement direction. Around that sits the unglamorous half — camera calibration for both the single and stereo paths, a shared-memory and Ethernet bus between processes, synthetic scene generation so the pipeline could be tested before any hardware existed, and a telemetry dashboard.</p>
+        <p>The rule I built in from the start: actuation stays disabled until calibration and validation pass. The software will not send a movement command to a physical hand it has not been proven against. A grip system that is confidently wrong breaks something or someone, and the interlock is cheaper than finding out.</p>
+        <div class="tags"><span>PyTorch</span><span>Depth Anything</span><span>Stereo vision</span><span>Jetson NEON</span><span>Camera calibration</span><span>Edge inference</span><span>IPC</span></div>
+        <a class="repo" href="https://github.com/seamus-programming-stuff/neurogrip" target="_blank" rel="noopener">github.com/seamus-programming-stuff/neurogrip &#8599;</a>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3>NeuroBOLT</h3>
+          <span class="chip chip-live">In progress</span>
+        </div>
+        <p class="meta">Independent reimplementation, with a researcher</p>
+        <p>Rebuilding the NeurIPS 2024 NeuroBOLT framework from scratch — a transformer that translates EEG recordings into fMRI brain-activity signals by learning across temporal, spatial and spectral representations, built on an existing foundation model with multi-scale spectral feature fusion.</p>
+        <p>Reimplementing rather than running the authors' code is the point: you cannot hand-wave a component you have to write.</p>
+        <div class="tags"><span>Transformers</span><span>EEG</span><span>fMRI</span><span>LaBraM</span><span>Cross-modal regression</span></div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-head">
+          <h3>Centaur Association</h3>
+          <span class="chip chip-live">Ongoing</span>
+        </div>
+        <p class="meta">Web Developer · Feb 2025 – current</p>
+        <p>Sole developer rebuilding the organisation's website from a blog structure into a custom templated platform — learning the stack as I went, and working directly with non-technical stakeholders to scope and ship.</p>
+        <div class="tags"><span>HTML/CSS</span><span>Templating</span><span>Stakeholder scoping</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="approach">
+    <h2>How I work</h2>
+    <div class="approach">
+      <div>
+        <h4>I don't trust a number I can't reproduce</h4>
+        <p>Most of what went wrong on CohortX went wrong quietly — files that vanished between stages, a scorer that looked fine and wasn't. The habit I took from it is checking the signal before trusting the result it gives you.</p>
+      </div>
+      <div>
+        <h4>Delegation that survives me leaving</h4>
+        <p>A team that only works while one person watches it isn't a team. The test I care about is whether the work keeps moving when I'm not there — and on CohortX it did.</p>
+      </div>
+      <div>
+        <h4>Constrain the model, don't trust it</h4>
+        <p>The clinical work pushed me toward architectures where the LLM is the smallest part that can do the job and everything around it is deterministic and inspectable. Ungrounded output is fine in a demo and useless anywhere it matters.</p>
+      </div>
+      <div>
+        <h4>I'd rather say what I don't know yet</h4>
+        <p>There are things I haven't done — I've run training on HPC rather than on AWS or GCP, for instance. I'd rather be clear about that than be caught out at the point it matters. I pick things up quickly under a real deadline and I finish what I take on.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2>Stack</h2>
+    <ul class="stack">
+      <li><span class="k">Languages</span><span class="v">Python, C++, SQL, R, basic Java</span></li>
+      <li><span class="k">AI engineering</span><span class="v">Open-weight LLMs, structured output, grounded generation, hybrid deterministic/LLM architectures, evaluation harness design</span></li>
+      <li><span class="k">ML</span><span class="v">PyTorch, transformers, CNNs, fine-tuning, multimodal fusion, edge inference on Jetson</span></li>
+      <li><span class="k">Data</span><span class="v">MongoDB, SQL, pipeline construction, medical imaging formats</span></li>
+      <li><span class="k">Compute</span><span class="v">Monash M3 / MASSIVE HPC, SLURM job submission, Linux, Bash</span></li>
+      <li><span class="k">Tooling</span><span class="v">Git, Unreal Engine, HTML/CSS</span></li>
+      <li><span class="k">Interests</span><span class="v">EEG and neural signal AI, medical AI, systems where a model’s output has to be defensible</span></li>
+      <li><span class="k">Leading</span><span class="v">Team lead and operations lead across five parallel challenge tracks</span></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>Open to AI engineering and applied ML internships and placements. Happy to talk through any of the above in more detail.</p>
+      <div class="mailrow">
+        <span class="mail" id="addr">seamusliamtaylor@gmail.com</span>
+        <button class="copy" id="copybtn" type="button">Copy</button>
+      </div>
+      <div class="links">
+        <a href="https://github.com/seamus-programming-stuff" target="_blank" rel="noopener">GitHub &#8599;</a>
+        <a href="https://www.linkedin.com/in/seamus-taylor-493046247/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+        <a href="seamus-taylor-cv.pdf" target="_blank" rel="noopener">CV (PDF) &#8599;</a>
+      </div>
+    </div>
+    <footer>Bachelor of Advanced Computer Science (Honours) · Monash University · 2024–2027</footer>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var c = document.getElementById('trace');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var t = 0;
+
+  function css(name){
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  function resize(){
+    var dpr = window.devicePixelRatio || 1;
+    var w = c.clientWidth, h = c.clientHeight;
+    c.width = Math.max(1, Math.floor(w * dpr));
+    c.height = Math.max(1, Math.floor(h * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // deterministic pseudo-noise so the trace looks like signal, not randomness
+  function noise(x, seed){
+    return Math.sin(x * 1.7 + seed) * 0.5
+         + Math.sin(x * 4.3 + seed * 2.1) * 0.28
+         + Math.sin(x * 9.1 + seed * 3.7) * 0.14
+         + Math.sin(x * 17.3 + seed * 5.2) * 0.07;
+  }
+
+  function draw(){
+    var w = c.clientWidth, h = c.clientHeight;
+    if(!w || !h) return;
+    ctx.clearRect(0, 0, w, h);
+
+    var accent = css('--accent') || '#0A6A6A';
+    var faint = css('--line') || '#D5E0E3';
+    var chans = 4;
+
+    // left: multichannel EEG-like traces, fading out across the width
+    for(var ch = 0; ch < chans; ch++){
+      ctx.beginPath();
+      ctx.strokeStyle = faint;
+      ctx.lineWidth = 1;
+      var base = (h / (chans + 1)) * (ch + 1);
+      for(var x = 0; x <= w; x += 2){
+        var fade = Math.max(0, 1 - x / (w * 0.72));
+        var amp = (h / (chans + 2)) * 0.42 * fade;
+        var y = base + noise(x / 26 + t * 0.9, ch * 2.3 + 1) * amp;
+        if(x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+
+    // right: the smooth haemodynamic response the model is predicting
+    ctx.beginPath();
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 1.75;
+    for(var px = 0; px <= w; px += 2){
+      var emerge = Math.max(0, Math.min(1, (px - w * 0.3) / (w * 0.42)));
+      var u = px / 46 - t * 0.55;
+      var bold = Math.sin(u) * 0.62 + Math.sin(u * 0.47 + 1.1) * 0.38;
+      var py = h / 2 + bold * (h * 0.3) * emerge;
+      if(px === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+  }
+
+  function frame(){
+    t += 0.009;
+    draw();
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  draw();
+  window.addEventListener('resize', function(){ resize(); draw(); });
+  if(!reduce) requestAnimationFrame(frame);
+})();
+
+(function(){
+  var btn = document.getElementById('copybtn');
+  var addr = document.getElementById('addr');
+  if(!btn || !addr) return;
+  btn.addEventListener('click', function(){
+    var done = function(){
+      btn.textContent = 'Copied';
+      setTimeout(function(){ btn.textContent = 'Copy'; }, 1800);
+    };
+    try{
+      navigator.clipboard.writeText(addr.textContent.trim()).then(done, function(){
+        var r = document.createRange();
+        r.selectNodeContents(addr);
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(r);
+        btn.textContent = 'Select & copy';
+        setTimeout(function(){ btn.textContent = 'Copy'; }, 2200);
+      });
+    }catch(e){
+      btn.textContent = 'Select & copy';
+      setTimeout(function(){ btn.textContent = 'Copy'; }, 2200);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
