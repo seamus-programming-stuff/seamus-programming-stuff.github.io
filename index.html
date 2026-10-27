@@ -429,8 +429,8 @@ footer{
   <div class="hero">
     <p class="eyebrow">Monash University · Melbourne</p>
     <h1>Seamus Taylor</h1>
-    <p class="lede">I build and lead applied AI systems that have to produce a real result on a real deadline — LLM pipelines with their own evaluation harnesses, a clinical decision agent built to stay auditable, and vision running at the edge on a prosthetic hand.</p>
-    <p class="sub">Third year, Bachelor of Advanced Computer Science (Honours), specialising in Data Science. Team Lead of Monash AIM for 2027, after a year as Operations Lead.</p>
+    <p class="lede">I build applied AI systems and stand up the teams that deliver them — retrieval-grounded agents whose outputs can be traced to their evidence, LLM pipelines with their own evaluation harnesses, and vision running at the edge on a prosthetic hand.</p>
+    <p class="sub">Third year, Bachelor of Advanced Computer Science (Honours), specialising in Data Science. Team Lead of Monash AIM for 2027, after a year as Operations Lead. Most of my work has been founding something rather than joining it — setting architecture, scope and standards for teams that had none yet.</p>
     <p class="interests"><span>Research interests</span> EEG and neural signal AI · medical AI</p>
 
     <div class="signal">
@@ -452,8 +452,12 @@ footer{
         <span class="when">Current</span>
       </li>
       <li>
-        <span class="role">Research Collaborator<span class="org">NeuroBOLT reimplementation, with a researcher</span></span>
-        <span class="when">Current</span>
+        <span class="role">Research Project<span class="org">EEG-to-fMRI prediction (NeuroBOLT), FIT2082</span></span>
+        <span class="when">2026</span>
+      </li>
+      <li>
+        <span class="role">AI consulting placement<span class="org">Client solution with advisory oversight; Claude Certified Architect</span></span>
+        <span class="when">Nov – Dec 2026</span>
       </li>
     </ul>
   </section>
@@ -469,8 +473,8 @@ footer{
           <span class="chip chip-live">In progress</span>
         </div>
         <p class="meta">Monash AIM · Architecture and build</p>
-        <p>A risk-stratification agent over MRI and biopsy data. The architecture is deliberately hybrid: a deterministic guideline core carries the clinical logic, and a grounded LLM is constrained to what it can actually support from the patient record.</p>
-        <p>The design decision I care most about is that NCCN risk-group derivation returns candidate categories <em>with traces</em> rather than hard labels. Every output can be walked back to the evidence that produced it. In a clinical setting that is the difference between something deployable and something you can only demo.</p>
+        <p>A retrieval-grounded risk-stratification agent over MRI and biopsy data. The architecture is deliberately hybrid: a deterministic guideline core carries the clinical logic, and the LLM is constrained to what it can actually support from the retrieved patient record.</p>
+        <p>The design decision I care most about is that risk-group derivation retrieves against published clinical guidelines and returns candidate categories <em>with provenance traces</em> rather than hard labels. Every output can be walked back to the source that produced it. In a clinical setting that is the difference between something deployable and something you can only demo.</p>
         <div class="tags"><span>Agent architecture</span><span>Grounded LLM</span><span>Guardrails</span><span>Traceable output</span><span>Python</span><span>ReportLab</span></div>
       </article>
 
@@ -498,7 +502,7 @@ footer{
           <span class="chip chip-live">In progress</span>
         </div>
         <p class="meta">Monash DeepNeuron · AI Lead on a three-person build</p>
-        <p>The project goal is a prosthetic arm controlled autonomously by AI. I own the computer vision pipeline: detecting the target object and driving finger movement from what the camera sees, alongside a mechanical lead and an electrical lead. It runs on the device — monocular depth from Depth Anything with an optional stereo path, deployed to an NVIDIA Jetson NEON smart camera.</p>
+        <p>The project goal is a prosthetic arm controlled autonomously by AI. I own the computer vision pipeline: detecting the target object and driving finger movement from what the camera sees, alongside a mechanical lead and an electrical lead. I take over the AI team next semester as the project scales, owning architecture and scope. It runs on the device — monocular depth from Depth Anything with an optional stereo path, deployed to an NVIDIA Jetson NEON smart camera.</p>
         <p>What it does in practice: track a taught fingertip and the target object, estimate the gap between them in millimetres once calibrated, and hand the electrical controller a movement direction. Around that sits the unglamorous half — camera calibration for both the single and stereo paths, a shared-memory and Ethernet bus between processes, synthetic scene generation so the pipeline could be tested before any hardware existed, and a telemetry dashboard.</p>
         <p>The rule I built in from the start: actuation stays disabled until calibration and validation pass. The software will not send a movement command to a physical hand it has not been proven against. A grip system that is confidently wrong breaks something or someone, and the interlock is cheaper than finding out.</p>
         <div class="tags"><span>PyTorch</span><span>Depth Anything</span><span>Stereo vision</span><span>Jetson NEON</span><span>Camera calibration</span><span>Edge inference</span><span>IPC</span></div>
@@ -510,9 +514,9 @@ footer{
           <h3>NeuroBOLT</h3>
           <span class="chip chip-live">In progress</span>
         </div>
-        <p class="meta">Independent reimplementation, with a researcher</p>
-        <p>Rebuilding the NeurIPS 2024 NeuroBOLT framework from scratch — a transformer that translates EEG recordings into fMRI brain-activity signals by learning across temporal, spatial and spectral representations, built on an existing foundation model with multi-scale spectral feature fusion.</p>
-        <p>Reimplementing rather than running the authors' code is the point: you cannot hand-wave a component you have to write.</p>
+        <p class="meta">Monash, FIT2082 · Supervised by a PhD researcher and an AI academic</p>
+        <p>A research project assessing whether transformer models can predict fMRI brain activity from EEG recordings, worked on a large paired neuroimaging dataset. I rebuilt the NeurIPS 2024 NeuroBOLT architecture from scratch — learning across temporal, spatial and spectral representations, on an existing foundation model with multi-scale spectral fusion.</p>
+        <p>Reimplementing rather than running the authors' code is the point: you cannot hand-wave a component you have to write. The conclusion was that it is a promising direction, and the work is continuing.</p>
         <div class="tags"><span>Transformers</span><span>EEG</span><span>fMRI</span><span>LaBraM</span><span>Cross-modal regression</span></div>
       </article>
 
@@ -555,7 +559,7 @@ footer{
     <h2>Stack</h2>
     <ul class="stack">
       <li><span class="k">Languages</span><span class="v">Python, C++, SQL, R, basic Java</span></li>
-      <li><span class="k">AI engineering</span><span class="v">Open-weight LLMs, structured output, grounded generation, hybrid deterministic/LLM architectures, evaluation harness design</span></li>
+      <li><span class="k">AI engineering</span><span class="v">Open-weight LLMs, retrieval-grounded generation with provenance, structured output, hybrid deterministic/LLM architectures, evaluation harness design</span></li>
       <li><span class="k">ML</span><span class="v">PyTorch, transformers, CNNs, fine-tuning, multimodal fusion, edge inference on Jetson</span></li>
       <li><span class="k">Data</span><span class="v">MongoDB, SQL, pipeline construction, medical imaging formats</span></li>
       <li><span class="k">Compute</span><span class="v">Monash M3 / MASSIVE HPC, SLURM job submission, Linux, Bash</span></li>
